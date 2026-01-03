@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "mcp-handler": "^1.0.1",
+    "mcp-handler": "^1.0.5",
     "next": "^15.2.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

@@ -4,32 +4,27 @@ import { z } from "zod";
 // StreamableHttp server
 const handler = createMcpHandler(
   async (server) => {
-    server.tool(
+    server.registerTool(
       "echo",
-      "description",
       {
-        message: z.string(),
+        title: "echo",
+        description: "Echo a message",
+        inputSchema: z.object({
+          message: z.string().min(1).max(100),
+        }),
       },
       async ({ message }) => ({
         content: [{ type: "text", text: `Tool echo: ${message}` }],
-      }),
+      })
     );
   },
-  {
-    capabilities: {
-      tools: {
-        echo: {
-          description: "Echo a message",
-        },
-      },
-    },
-  },
+  {},
   {
     basePath: "",
     verboseLogs: true,
     maxDuration: 60,
     disableSse: true,
-  },
+  }
 );
 
 export { handler as GET, handler as POST, handler as DELETE };
